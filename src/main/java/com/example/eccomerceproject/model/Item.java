@@ -28,4 +28,8 @@ public class Item {
     @ManyToOne
     @JoinColumn
     Ordered ordered;
+
+    @OneToOne
+    @JoinColumn
+    Product product;
 }
