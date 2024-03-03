@@ -2,10 +2,7 @@ package com.example.eccomerceproject.model;
 
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.ArrayList;
@@ -17,14 +14,17 @@ import java.util.List;
 @AllArgsConstructor
 @Data  // getters,setters,RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String name;
+    @Column(unique = true)
     String emailId;
     int age;
+    @Column(unique = true)
     String mobNo;
     String address;
 
@@ -34,7 +34,7 @@ public class Customer {
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     List<Card>card=new ArrayList<>();
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-    List<Cart>cart=new ArrayList<>();
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    Cart cart;
 
 }

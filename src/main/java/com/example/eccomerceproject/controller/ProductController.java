@@ -25,4 +25,11 @@ public class ProductController {
     public List<ProductResponseDto>getAllProductsByCategory(@PathVariable("category") ProductCategory category){
         return productService.getAllProductsByCategory(category);
     }
+
+    @GetMapping("/get/{price}/{category}")
+    public List<ProductResponseDto>getProductByPriceAndCategory(
+            @PathVariable("price") int price,
+            @PathVariable("category") String category){
+        return productService.getProductByPriceAndCategory(price,category);
+    }
 }

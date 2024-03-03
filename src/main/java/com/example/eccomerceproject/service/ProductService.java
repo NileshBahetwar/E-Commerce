@@ -11,4 +11,5 @@ public interface ProductService {
 
     public ProductResponseDto addProduct(ProductRequestDto productRequestDto) throws InvalidSellerException;
     public List<ProductResponseDto> getAllProductsByCategory(ProductCategory category);
+    public List<ProductResponseDto>getProductByPriceAndCategory(int price,String category);
 }
