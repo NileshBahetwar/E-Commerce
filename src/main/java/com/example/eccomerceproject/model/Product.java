@@ -39,7 +39,7 @@ public class Product {
     @JoinColumn
     Seller seller;
 
-    @OneToOne(mappedBy = "product",cascade = CascadeType.ALL)
-    Item item;
-
+   // changes cardinality from OneToOne >> to OneToMany
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    List<Item> items;
 }

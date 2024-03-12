@@ -1,10 +1,7 @@
 package com.example.eccomerceproject.model;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
@@ -13,12 +10,13 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Data  // getters,setters,RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String name;
+    // removed name attribute
     int requiredQuantity;
 
     @ManyToOne
@@ -29,7 +27,8 @@ public class Item {
     @JoinColumn
     Ordered ordered;
 
-    @OneToOne
+    // OneToOne to OneToMany changes in cardinality ratio
+    @ManyToOne
     @JoinColumn
     Product product;
 }
