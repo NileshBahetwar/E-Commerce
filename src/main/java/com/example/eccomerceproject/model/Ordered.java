@@ -1,8 +1,10 @@
 package com.example.eccomerceproject.model;
 
 import jakarta.persistence.*;
+import jdk.jfr.Timestamp;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +27,7 @@ public class Ordered {
 
     String orderNo;
     int totalValue;
+    @CreationTimestamp
     Date orderDate;
     String cardUsed;
 

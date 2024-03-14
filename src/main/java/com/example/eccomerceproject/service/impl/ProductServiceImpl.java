@@ -6,8 +6,12 @@ import com.example.eccomerceproject.dto.requestDto.SellerRequestDto;
 import com.example.eccomerceproject.dto.responseDto.ProductResponseDto;
 import com.example.eccomerceproject.dto.responseDto.SellerResponseDto;
 import com.example.eccomerceproject.enums.ProductCategory;
+import com.example.eccomerceproject.enums.ProductStatus;
 import com.example.eccomerceproject.exception.EmailAlreadyExistException;
 import com.example.eccomerceproject.exception.InvalidSellerException;
+import com.example.eccomerceproject.exception.OutOfStockException;
+import com.example.eccomerceproject.model.Item;
+import com.example.eccomerceproject.model.Ordered;
 import com.example.eccomerceproject.model.Product;
 import com.example.eccomerceproject.model.Seller;
 import com.example.eccomerceproject.repository.ProductRepository;
@@ -72,5 +76,19 @@ public class ProductServiceImpl implements ProductService {
             productResponseDtos.add(ProductTransformer.ProductToProductResponseDto(product));
         }
         return productResponseDtos;
+    }
+
+    @Override
+    public void decreaseProductOtQuantity(Item item) throws OutOfStockException {
+          Product product = item.getProduct();
+          int reqQuantity = item.getRequiredQuantity();
+          int currQuantity = product.getQuantity();
+          if(reqQuantity>currQuantity){
+              throw new OutOfStockException("Product out of stock !!! ");
+          }
+          product.setQuantity(currQuantity-reqQuantity);
+          if(product.getQuantity()==0){
+              product.setProductStatus(ProductStatus.OUT_OF_STOCK);
+          }
     }
 }

@@ -1,0 +1,16 @@
+package com.example.eccomerceproject.dto.requestDto;
+
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data  // getters,setters,RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
+public class CheckOutCartRequestDto {
+    int customerId;
+    String cardNo;
+    int cvv;
+}

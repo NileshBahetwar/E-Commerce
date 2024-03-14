@@ -1,11 +1,10 @@
 package com.example.eccomerceproject.controller;
 
+import com.example.eccomerceproject.dto.requestDto.CheckOutCartRequestDto;
 import com.example.eccomerceproject.dto.requestDto.ItemRequestDto;
 import com.example.eccomerceproject.dto.responseDto.CartResponseDto;
-import com.example.eccomerceproject.exception.InvalidCustomerException;
-import com.example.eccomerceproject.exception.OutOfStockException;
-import com.example.eccomerceproject.exception.ProductNotFoundException;
-import com.example.eccomerceproject.exception.RequiredQuantityNotAvailableException;
+import com.example.eccomerceproject.dto.responseDto.OrderResponseDto;
+import com.example.eccomerceproject.exception.*;
 import com.example.eccomerceproject.model.Item;
 import com.example.eccomerceproject.service.CartService;
 import com.example.eccomerceproject.service.ItemService;
@@ -36,5 +35,9 @@ public class CartController {
         catch(Exception e){
             return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
+    }
+    @PostMapping("/checkout")
+    public OrderResponseDto checkoutCart(@RequestBody CheckOutCartRequestDto checkOutCartRequestDto) throws EmptyCartException, ProductCurrentlyUnavailableException, InvalidCustomerException, InvalidCardException, OrderFailedException {
+           return cartService.checkoutCart(checkOutCartRequestDto);
     }
 }
