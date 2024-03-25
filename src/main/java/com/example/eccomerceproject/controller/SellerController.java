@@ -30,7 +30,7 @@ public class SellerController {
         }
     }
     @GetMapping("/get-seller-by-email")
-    public SellerResponseDto getSellerByEmail(@RequestParam String emailId){
+    public SellerResponseDto getSellerByEmail(@RequestParam String emailId) throws InvalidSellerException {
         return sellerService.getSellerByEmail(emailId);
     }
 

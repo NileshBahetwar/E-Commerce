@@ -17,4 +17,22 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
 
 //    @Query(value = "select * from product p where p.price > :price and p.productCategory = :category")
 //    List<Product>getProductByPriceAndCategory(int price,ProductCategory category);
+    @Query(value = "select * from product order by price LIMIT 5",nativeQuery = true)
+    List<Product>getTop5Products();
+
+    @Query(value = "select * from product order by price desc LIMIT 5",nativeQuery = true)
+    List<Product>getTop5CheapestProducts();
+    @Query(value = "select * from product where product_status ='available'",nativeQuery = true)
+    List<Product>getAllAvailableProducts();
+    @Query(value = "select * from product where product_status ='out_of_stock'",nativeQuery = true)
+    List<Product>getAllOutOfStockProducts();
+
+    @Query(value = "select * from product where quantity > 100",nativeQuery = true)
+    List<Product>getAllProductsGreaterThan100Quantity();
+
+    @Query(value = "select * from product where product_category = :category order by price asc limit 1",nativeQuery = true)
+    Product getCheapestProductOfParticularCategory(String category);
+
+    @Query(value = "select * from product where product_category = :category order by price desc limit 1",nativeQuery = true)
+    Product getCostliestProductOfParticularCategory(String category);
 }

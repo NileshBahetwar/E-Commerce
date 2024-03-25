@@ -35,6 +35,7 @@ public class ProductTransformer {
                 .productStatus(product.getProductStatus())
                 .quantity(product.getQuantity())
                 .sellerName(product.getSeller().getName())
+                .price(product.getPrice())
                 .build();
     }
 }

@@ -92,7 +92,7 @@ public class CartServiceImpl implements CartService {
             throw new OrderFailedException("Order cannot be made");
         }
        // prepare response dto
-       OrderResponseDto orderResponseDto=OrderTransformer.orderToOrderRequestDto(savedOrder);
+       OrderResponseDto orderResponseDto=OrderTransformer.orderToOrderResponseDto(savedOrder);
         List<ItemResponseDto>itemResponseDtoList = new ArrayList<>();
         for(Item item : savedOrder.getItems()){
             itemResponseDtoList.add(ItemTransformer.ItemToItemResponseDto(item));

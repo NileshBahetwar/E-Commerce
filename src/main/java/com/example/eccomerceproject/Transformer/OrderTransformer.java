@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class OrderTransformer {
-    public static OrderResponseDto orderToOrderRequestDto(Ordered order){
+    public static OrderResponseDto orderToOrderResponseDto(Ordered order){
         return OrderResponseDto.builder()
                 .orderNo(order.getOrderNo())
                 .cardUsed(order.getCardUsed())
