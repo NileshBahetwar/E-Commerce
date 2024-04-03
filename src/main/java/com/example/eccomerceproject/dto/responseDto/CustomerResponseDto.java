@@ -10,5 +10,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 public class CustomerResponseDto {
     String name;
-    String message;
+    int age;
+    String mobNo;
 }

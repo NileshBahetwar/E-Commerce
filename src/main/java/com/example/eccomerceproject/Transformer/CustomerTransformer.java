@@ -21,7 +21,8 @@ public class CustomerTransformer {
     public static CustomerResponseDto CustomerToCustomerResponseDto(Customer customer){
         return CustomerResponseDto.builder()
                 .name(customer.getName())
-                .message("customer registered with name "+customer.getName()+" successfully !!!")
+                .age(customer.getAge())
+                .mobNo(customer.getMobNo())
         .build();
     }
 }
